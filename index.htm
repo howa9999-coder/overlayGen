@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OverlayGen | Custom Overlay Creator</title>
+    <link rel="stylesheet" href="src/style.css">
+<!--     <link rel="stylesheet" href="src/modals.css"> -->
+    <link rel="stylesheet" href="dist/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="dist/geoman/leaflet-geoman.css" />
+    <script src="dist/leaflet/leaflet.js"></script>
+    <script src="dist/geoman/leaflet-geoman.js"></script>
+
+</head>
+<body>
+
+<header>
+    <div class="logo"><span>Overlay</span>Gen</div>
+    <div class="top-nav">
+        <input type="file" id="imgInp" accept="image/*" class="hidden">
+        <button class="btn btn-upload" onclick="document.getElementById('imgInp').click()">Step 1: Upload Image</button>
+        <button class="btn btn-create" id="create-modal-btn" >Step 2: Create an Overlay</button>
+        <button id="downloadBtn" style="display:none;" onclick="downloadOverlay()"  class="btn btn-export">Step 3: Download JSON</button>
+        <button id="clearBtn" style="display:none;" onclick="clearMap()"  class="btn btn-clear">Clear Map</button>
+    </div>
+</header>
+
+<div id="app">
+    <div id="map"></div>
+    
+    <aside id="sidebar">
+        <div id="properties-container" >
+        <h3>Properties</h3>
+<div id="empty-msg" class="placeholder-text">
+    <h4>Begin Mapping</h4>
+    <p>1️⃣ First, upload an image.</p>
+    <p>2️⃣ Then click on "Create Overlay".</p>
+    <p>3️⃣ Choose "Import Layer" to import and continue work, or create a new overlay.</p>
+    <p>4️⃣ Click on the map to start creating and enter appropriate values.</p>
+    <p>5️⃣ Click on any layer to add/edit appropriate values.</p>
+    <p>6️⃣ Click on "Download" to download your work.</p>
+    <p>7️⃣ Click on "Clear" to clear the map.</p>
+
+    <p>⚠️ All inputs should be filled. If there is any empty value, enter <strong>NaN</strong> or any.</p>
+</div>
+        
+                <form id="featureForm" class="hidden">
+                    <div class="field">
+                        <label>Layer ID</label>
+                        <input type="text" id="prop-id" readonly style="background: #eee;">
+                    </div>
+                    <div id="feature-div"></div>
+                    <button  type="submit" id="save-props" class="btn btn-save">Save to Shape</button>
+                </form>
+        </div>
+        </aside>
+</div>
+<div id="coords">Coordinates: --------- </div>
+
+<!-- MODALS -->
+ <div id="myModal" class="modal">
+
+  <div class="modal-content">
+  </div>
+
+</div>
+    <script  src="src/modal.js"></script>
+    <script  src="src/map.js"></script>
+    <script  src="src/functions.js"></script>
+ 
+</body>
+</html>
